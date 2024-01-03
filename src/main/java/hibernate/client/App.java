@@ -65,10 +65,15 @@ public class App {
 		// query.executeUpdate();
 
 		// Aggregate Functions
-		Query q = session.createQuery("select max(salary) from Employee");
+		// Query q = session.createQuery("select max(salary) from Employee");
+		// List<Integer> list1 = q.list();
+		// System.out.println(list1);
+		// System.out.println(list1.get(0));
+
+		// Example of HQL to get all the records
+		Query q = session.createQuery("from Employee");
 		List<Integer> list1 = q.list();
 		System.out.println(list1);
-		System.out.println(list1.get(0));
 
 		tx.commit();
 
