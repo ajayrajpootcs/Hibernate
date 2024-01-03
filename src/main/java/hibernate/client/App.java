@@ -60,9 +60,15 @@ public class App {
 
 		// HQL delete query
 		// Query query = session.createQuery("delete from Employee where id= 3");
-		Query query = session.createQuery("delete from Employee where id=:n");
-		query.setParameter("n", 2);
-		query.executeUpdate();
+		// Query query = session.createQuery("delete from Employee where id=:n");
+		// query.setParameter("n", 2);
+		// query.executeUpdate();
+
+		// Aggregate Functions
+		Query q = session.createQuery("select max(salary) from Employee");
+		List<Integer> list1 = q.list();
+		System.out.println(list1);
+		System.out.println(list1.get(0));
 
 		tx.commit();
 
