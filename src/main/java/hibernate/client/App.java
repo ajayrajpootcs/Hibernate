@@ -3,17 +3,16 @@ package hibernate.client;
 import org.hibernate.SessionFactory;
 
 import hibernate.configDB.HibernateConfig;
+
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-//import org.hibernate.boot.MetadataSources;
-//import org.hibernate.boot.Metadata;
-//import org.hibernate.boot.registry.StandardServiceRegistry;
-//import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-//import org.hibernate.cfg.Configuration;
 import hibernate.entity.Employee;
+import org.hibernate.query.Query;
 
 public class App {
-	// @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		Employee e = new Employee();
@@ -22,13 +21,6 @@ public class App {
 		e.setGender("Male");
 		e.setSalary(200000);
 
-		// Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
-		// SessionFactory sf = cfg.buildSessionFactory();
-		// StandardServiceRegistry ssr = new
-		// StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-		// Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
-		// SessionFactory sf = meta.buildSessionFactory();
-
 		HibernateConfig cfg = new HibernateConfig();
 
 		SessionFactory sf = cfg.getSessionFactory();
@@ -36,13 +28,15 @@ public class App {
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 
-		session.save(e);
-		// session.update(e)
-		// session.delete(e.getName(), e);;;
-		tx.commit();
+		// session.save(e);
 
-		// e = session.get(Employee.class, 4);
-		// System.out.println(e);
+		// Query ineterface HQL
+		// fetching data from table
+		Query query1 = session.createQuery("from Employee");
+		List list = query1.list();
+		System.out.println(list);
+
+		tx.commit();
 
 		System.out.print("Suceess...");
 		session.close();
