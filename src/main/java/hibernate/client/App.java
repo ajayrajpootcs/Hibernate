@@ -17,11 +17,10 @@ public class App {
 	public static void main(String[] args) {
 
 		Employee e = new Employee();
-//		e.setId(2);
-		e.setName("Black Widow");
+		// e.setId(2);
+		e.setName("Monkey King");
 		e.setGender("Male");
 		e.setSalary(200000);
-	
 
 		// Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
 		// SessionFactory sf = cfg.buildSessionFactory();
@@ -29,7 +28,6 @@ public class App {
 		// StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 		// Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
 		// SessionFactory sf = meta.buildSessionFactory();
-		
 
 		HibernateConfig cfg = new HibernateConfig();
 
