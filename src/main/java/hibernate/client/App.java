@@ -31,8 +31,21 @@ public class App {
 		// session.save(e);
 
 		// Query ineterface HQL
-		// fetching data from table
+
+		/*
+		 * // fetching data from table
+		 * 
+		 * Query query1 = session.createQuery("from Employee");
+		 * List list = query1.list();
+		 * System.out.println(list);
+		 * 
+		 */
+
+		// Fetching Specific source to specific destination data from the table
+
 		Query query1 = session.createQuery("from Employee");
+		query1.setFirstResult(2); // set the position at row specific row and result prints from row 3
+		query1.setMaxResults(3); // Returns Three Records After record 2
 		List list = query1.list();
 		System.out.println(list);
 
