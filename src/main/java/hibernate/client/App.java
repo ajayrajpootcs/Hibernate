@@ -33,7 +33,7 @@ public class App {
 		// Query ineterface HQL
 
 		/*
-		 * // fetching data from table
+		 * //Example of HQL to get all the records
 		 * 
 		 * Query query1 = session.createQuery("from Employee");
 		 * List list = query1.list();
@@ -41,13 +41,22 @@ public class App {
 		 * 
 		 */
 
-		// Fetching Specific source to specific destination data from the table
+		/*
+		 * // Fetching Specific source to specific destination data from the table
+		 * // HQL to get records with pagination
+		 * Query query1 = session.createQuery("from Employee");
+		 * query1.setFirstResult(2); // set the position at row specific row and result
+		 * prints from row 3
+		 * query1.setMaxResults(3); // Returns Three Records After record 2
+		 * List list = query1.list();
+		 * System.out.println(list);
+		 */
 
-		Query query1 = session.createQuery("from Employee");
-		query1.setFirstResult(2); // set the position at row specific row and result prints from row 3
-		query1.setMaxResults(3); // Returns Three Records After record 2
-		List list = query1.list();
-		System.out.println(list);
+		//// HQL update query Using Named Parameters
+		// Query q = session.createQuery("update Employee set name=:n where id=:i");
+		// q.setParameter("n", "Udit kumar");
+		// q.setParameter("i", 1);
+		// System.out.println("status: " + q.executeUpdate());
 
 		tx.commit();
 
