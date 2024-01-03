@@ -58,6 +58,12 @@ public class App {
 		// q.setParameter("i", 1);
 		// System.out.println("status: " + q.executeUpdate());
 
+		// HQL delete query
+		// Query query = session.createQuery("delete from Employee where id= 3");
+		Query query = session.createQuery("delete from Employee where id=:n");
+		query.setParameter("n", 2);
+		query.executeUpdate();
+
 		tx.commit();
 
 		System.out.print("Suceess...");
