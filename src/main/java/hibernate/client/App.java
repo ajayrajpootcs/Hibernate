@@ -9,6 +9,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import hibernate.entity.Employee;
+import jakarta.persistence.TypedQuery;
+
 import org.hibernate.query.Query;
 
 public class App {
@@ -71,9 +73,23 @@ public class App {
 		// System.out.println(list1.get(0));
 
 		// Example of HQL to get all the records
-		Query q = session.createQuery("from Employee");
-		List<Integer> list1 = q.list();
-		System.out.println(list1);
+		// Query q = session.createQuery("from Employee");
+		// List<Integer> list1 = q.list();
+		// System.out.println(list1);
+
+		// Using Named Query
+		// List<Employee> employees = session.createNamedQuery("getEmployeeByName",
+		// Employee.class)
+		// .setParameter("name", "Loki").getResultList();
+		Query<Employee> employees = session.createNamedQuery("findByGender", Employee.class);
+		employees.setParameter("gender", "female");
+		List<Employee> list = employees.getResultList();
+
+		for (Employee lisEmployee : list) {
+			System.out.println(lisEmployee);
+
+		}
+		// System.out.println(employees);
 
 		tx.commit();
 
