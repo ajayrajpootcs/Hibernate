@@ -16,6 +16,7 @@ public class App {
 		Session session = sf.openSession();
 		save(session);
 		fetchAllEmployee(session);
+		fetchAllAddress(session);
 		System.out.print("Suceess...");
 		session.close();
 
@@ -29,18 +30,29 @@ public class App {
 			System.out.println(add);
 		});
 		// System.out.println(resultList.get(1).employee);
+		System.out.println("...............EMP end...........");
+	}
+
+	private static void fetchAllAddress(Session session) {
+		System.out.println("...............Address Fetching..........");
+		List<Address> resultList = session.createQuery("From Address", Address.class).getResultList();
+		for (Address address : resultList) {
+			System.out.println(address + "   " + address.getEmployee());
+		}
+		// System.out.println(resultList.get(1).employee);
 		System.out.println("...............Address end...........");
 	}
 
 	private static void save(Session session) {
 		Transaction transaction = session.beginTransaction();
 		Employee e = new Employee();
-		e.setFirstName("Lucy");
-		e.setLastName("Ragnarok");
-		Address address = new Address("Asgaurd", "Asgaurd");
+		e.setFirstName("Scarlet");
+		e.setLastName("Witch");
+		Address address = new Address("California", "USA");
 		e.setAddress(address);
+		address.setEmployee(e);
 
-		// session.persist(address);
+		session.persist(address);
 		session.persist(e);
 		transaction.commit();
 	}

@@ -21,6 +21,7 @@ public class Employee {
 	private String lastName;
 
 	@OneToOne
+	// @OneToOne(mappedBy = "employee") // No extra Column in Employee
 	// @JoinColumn(name = "AddFK") //To rename Fk Attribute in the table
 	// @Cascade(CascadeType.ALL) //To persist or save the employee without Address
 	// obj
