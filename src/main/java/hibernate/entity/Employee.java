@@ -1,5 +1,8 @@
 package hibernate.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 // import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +21,9 @@ public class Employee {
 	private String lastName;
 
 	@OneToOne
-	// @JoinColumn(name = "AddFK")
+	// @JoinColumn(name = "AddFK") //To rename Fk Attribute in the table
+	// @Cascade(CascadeType.ALL) //To persist or save the employee without Address
+	// obj
 	private Address address;
 
 	public Employee() {

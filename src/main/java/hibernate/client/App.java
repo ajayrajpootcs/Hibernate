@@ -35,12 +35,12 @@ public class App {
 	private static void save(Session session) {
 		Transaction transaction = session.beginTransaction();
 		Employee e = new Employee();
-		e.setFirstName("Thor");
+		e.setFirstName("Lucy");
 		e.setLastName("Ragnarok");
 		Address address = new Address("Asgaurd", "Asgaurd");
 		e.setAddress(address);
 
-		session.persist(address);
+		// session.persist(address);
 		session.persist(e);
 		transaction.commit();
 	}
