@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -17,6 +18,7 @@ public class Employee {
 	private String lastName;
 
 	@OneToOne
+	// @JoinColumn(name = "AddFK")
 	private Address address;
 
 	public Employee() {

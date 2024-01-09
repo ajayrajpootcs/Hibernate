@@ -14,7 +14,7 @@ public class App {
 
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
-		// save(session);
+		save(session);
 		fetchAllEmployee(session);
 		System.out.print("Suceess...");
 		session.close();
@@ -35,9 +35,9 @@ public class App {
 	private static void save(Session session) {
 		Transaction transaction = session.beginTransaction();
 		Employee e = new Employee();
-		e.setFirstName("Monkey");
-		e.setLastName("King");
-		Address address = new Address("China", "China");
+		e.setFirstName("Thor");
+		e.setLastName("Ragnarok");
+		Address address = new Address("Asgaurd", "Asgaurd");
 		e.setAddress(address);
 
 		session.persist(address);
