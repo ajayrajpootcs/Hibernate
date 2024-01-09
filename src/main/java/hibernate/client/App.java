@@ -1,6 +1,8 @@
 package hibernate.client;
 
 import org.hibernate.SessionFactory;
+
+import hibernate.configDB.HibernateConfig;
 import hibernate.configDB.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
@@ -12,7 +14,8 @@ public class App {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
-		SessionFactory sf = HibernateUtil.getSessionFactory();
+		// SessionFactory sf = HibernateUtil.getSessionFactory();
+		SessionFactory sf = new HibernateConfig().getSessionFactory();
 		Session session = sf.openSession();
 		save(session);
 		fetchAllEmployee(session);
@@ -46,9 +49,9 @@ public class App {
 	private static void save(Session session) {
 		Transaction transaction = session.beginTransaction();
 		Employee e = new Employee();
-		e.setFirstName("Scarlet");
-		e.setLastName("Witch");
-		Address address = new Address("California", "USA");
+		e.setFirstName("Vision");
+		e.setLastName("Marvel");
+		Address address = new Address("Unkown", "Unkown");
 		e.setAddress(address);
 		address.setEmployee(e);
 

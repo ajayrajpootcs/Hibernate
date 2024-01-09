@@ -15,7 +15,7 @@ public class HibernateConfig {
 
 		Properties ps = new Properties();
 		ps.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
-		ps.put(Environment.URL, "jdbc:mysql://localhost:3306/hibernatedb");
+		ps.put(Environment.URL, "jdbc:mysql://localhost:3306/mappings");
 		ps.put(Environment.USER, "root");
 		ps.put("hibernate.connection.password", "root");
 		ps.put("hibernate.hbm2ddl.auto", "update");
