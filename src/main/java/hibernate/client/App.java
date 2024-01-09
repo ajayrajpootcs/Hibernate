@@ -1,101 +1,48 @@
 package hibernate.client;
 
 import org.hibernate.SessionFactory;
-
-import hibernate.configDB.HibernateConfig;
-
+import hibernate.configDB.HibernateUtil;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import hibernate.entity.Address;
 import hibernate.entity.Employee;
-import jakarta.persistence.TypedQuery;
-
-import org.hibernate.query.Query;
 
 public class App {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
-		Employee e = new Employee();
-		// e.setId(2);
-		e.setName("Monkey King");
-		e.setGender("Male");
-		e.setSalary(200000);
-
-		HibernateConfig cfg = new HibernateConfig();
-
-		SessionFactory sf = cfg.getSessionFactory();
-
+		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
-		Transaction tx = session.beginTransaction();
-
-		// session.save(e);
-
-		// Query ineterface HQL
-
-		/*
-		 * //Example of HQL to get all the records
-		 * 
-		 * Query query1 = session.createQuery("from Employee");
-		 * List list = query1.list();
-		 * System.out.println(list);
-		 * 
-		 */
-
-		/*
-		 * // Fetching Specific source to specific destination data from the table
-		 * // HQL to get records with pagination
-		 * Query query1 = session.createQuery("from Employee");
-		 * query1.setFirstResult(2); // set the position at row specific row and result
-		 * prints from row 3
-		 * query1.setMaxResults(3); // Returns Three Records After record 2
-		 * List list = query1.list();
-		 * System.out.println(list);
-		 */
-
-		//// HQL update query Using Named Parameters
-		// Query q = session.createQuery("update Employee set name=:n where id=:i");
-		// q.setParameter("n", "Udit kumar");
-		// q.setParameter("i", 1);
-		// System.out.println("status: " + q.executeUpdate());
-
-		// HQL delete query
-		// Query query = session.createQuery("delete from Employee where id= 3");
-		// Query query = session.createQuery("delete from Employee where id=:n");
-		// query.setParameter("n", 2);
-		// query.executeUpdate();
-
-		// Aggregate Functions
-		// Query q = session.createQuery("select max(salary) from Employee");
-		// List<Integer> list1 = q.list();
-		// System.out.println(list1);
-		// System.out.println(list1.get(0));
-
-		// Example of HQL to get all the records
-		// Query q = session.createQuery("from Employee");
-		// List<Integer> list1 = q.list();
-		// System.out.println(list1);
-
-		// Using Named Query
-		// List<Employee> employees = session.createNamedQuery("getEmployeeByName",
-		// Employee.class)
-		// .setParameter("name", "Loki").getResultList();
-		Query<Employee> employees = session.createNamedQuery("findByGender", Employee.class);
-		employees.setParameter("gender", "female");
-		List<Employee> list = employees.getResultList();
-
-		for (Employee lisEmployee : list) {
-			System.out.println(lisEmployee);
-
-		}
-		// System.out.println(employees);
-
-		tx.commit();
-
+		// save(session);
+		fetchAllEmployee(session);
 		System.out.print("Suceess...");
 		session.close();
 
+	}
+
+	@SuppressWarnings("deprecation")
+	private static void fetchAllEmployee(Session session) {
+		System.out.println("...............Address Fetching..........");
+		List<Employee> resultList = session.createQuery("From Employee", Employee.class).getResultList();
+		resultList.forEach(add -> {
+			System.out.println(add);
+		});
+		// System.out.println(resultList.get(1).employee);
+		System.out.println("...............Address end...........");
+	}
+
+	private static void save(Session session) {
+		Transaction transaction = session.beginTransaction();
+		Employee e = new Employee();
+		e.setFirstName("Monkey");
+		e.setLastName("King");
+		Address address = new Address("China", "China");
+		e.setAddress(address);
+
+		session.persist(address);
+		session.persist(e);
+		transaction.commit();
 	}
 
 }

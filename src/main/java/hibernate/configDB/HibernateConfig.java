@@ -28,7 +28,8 @@ public class HibernateConfig {
 		// MetadataSources(ssr).addAnnotatedClass(hibernate.entity.Employee.class);
 		// MetaData meta = metasources.buildMetadata();
 		// Direct Call
-		Metadata meta = new MetadataSources(ssr).addAnnotatedClass(hibernate.entity.Employee.class).buildMetadata();
+		Metadata meta = new MetadataSources(ssr)
+				.addAnnotatedClasses(hibernate.entity.Employee.class, hibernate.entity.Address.class).buildMetadata();
 
 		SessionFactory sf = meta.buildSessionFactory();
 
