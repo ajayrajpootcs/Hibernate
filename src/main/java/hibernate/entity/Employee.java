@@ -1,17 +1,16 @@
 package hibernate.entity;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 // import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
-@Entity
+@Entity(name = "Emp2")
 public class Employee {
 
 	@Id
@@ -20,12 +19,16 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 
-	@OneToOne
-	// @OneToOne(mappedBy = "employee") // No extra Column in Employee
-	// @JoinColumn(name = "AddFK") //To rename Fk Attribute in the table
-	// @Cascade(CascadeType.ALL) //To persist or save the employee without Address
-	// obj
-	private Address address;
+	@OneToMany(mappedBy = "employeeFK", cascade = CascadeType.ALL)
+	List<Address> addresses;
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
 
 	public Employee() {
 	}
@@ -54,17 +57,9 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + addresses
 				+ "]";
 	}
 
