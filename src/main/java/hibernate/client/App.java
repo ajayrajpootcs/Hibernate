@@ -28,12 +28,12 @@ public class App {
 
 	// @SuppressWarnings("deprecation")
 	// private static void fetchAllEmployee(Session session) {
-	// System.out.println("...............Address Fetching..........");
+	// System.out.println("...............EMPLOYEE Fetching..........");
 	// List<Employee> resultList = session.createQuery("From Employee",
 	// Employee.class).getResultList();
-	// resultList.forEach(add -> {
-	// System.out.println(add);
-	// });
+	// for (Employee employee : resultList) {
+	// System.out.println(employee);
+	// }
 	// // System.out.println(resultList.get(1).employee);
 	// System.out.println("...............EMP end...........");
 	// }
