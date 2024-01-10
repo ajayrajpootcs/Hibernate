@@ -64,7 +64,7 @@ public class App {
 		ll.add(address3);
 		e.setAddresses(ll);
 		session.persist(e);
-		session.persist(ll);
+		// session.persist(ll);
 		transaction.commit();
 	}
 

@@ -19,7 +19,7 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 
-	@OneToMany(mappedBy = "employeeFK", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	List<Address> addresses;
 
 	public List<Address> getAddresses() {
