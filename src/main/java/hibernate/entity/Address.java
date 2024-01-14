@@ -2,6 +2,7 @@ package hibernate.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class Address {
     public String street;
     public String city;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Employee> employee;
 
     // Employee employee;
