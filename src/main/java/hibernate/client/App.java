@@ -57,7 +57,9 @@ public class App {
 		Address address1 = new Address("NH21", "Sitapur");
 		Address address2 = new Address("NH22", "LKO");
 		Address address3 = new Address("NH23", "GZB");
-
+		address1.setEmployee(e);
+		address2.setEmployee(e);
+		address3.setEmployee(e);
 		List<Address> ll = new LinkedList<>();
 		ll.add(address1);
 		ll.add(address2);
