@@ -1,12 +1,15 @@
 package hibernate.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+// import jakarta.persistence.ManyToOne;
 
-@Entity(name = "add2")
+@Entity(name = "add3")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +17,24 @@ public class Address {
     public String street;
     public String city;
 
-    @ManyToOne
-    Employee employee;
+    @ManyToMany
+    List<Employee> employee;
 
-    public Employee getEmployee() {
+    // Employee employee;
+
+    // public Employee getEmployee() {
+    // return employee;
+    // }
+
+    // public void setEmployee(Employee employee) {
+    // this.employee = employee;
+    // }
+
+    public List<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(List<Employee> employee) {
         this.employee = employee;
     }
 

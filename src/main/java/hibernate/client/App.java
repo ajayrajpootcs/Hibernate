@@ -18,9 +18,9 @@ public class App {
 		// SessionFactory sf = HibernateUtil.getSessionFactory();
 		SessionFactory sf = new HibernateConfig().getSessionFactory();
 		Session session = sf.openSession();
-		// save(session);
-		fetchAllEmployee(session);
-		fetchAllAddress(session);
+		save(session);
+		// fetchAllEmployee(session);
+		// fetchAllAddress(session);
 		System.out.print("Suceess...");
 		session.close();
 
@@ -62,20 +62,46 @@ public class App {
 	private static void save(Session session) {
 		Transaction transaction = session.beginTransaction();
 		Employee e = new Employee();
+		Employee e2 = new Employee();
+		Employee e3 = new Employee();
 		e.setFirstName("Thanos");
 		e.setLastName("Marvel");
+		e2.setFirstName("Luffy");
+		e2.setLastName("D. Monkey");
+		e3.setFirstName("Monkey");
+		e3.setLastName("King");
+		List<Employee> empList = new LinkedList<>();
+		empList.add(e);
+		empList.add(e2);
+		empList.add(e3);
 		Address address1 = new Address("NH21", "Sitapur");
 		Address address2 = new Address("NH22", "LKO");
 		Address address3 = new Address("NH23", "GZB");
-		address1.setEmployee(e);
-		address2.setEmployee(e);
-		address3.setEmployee(e);
 		List<Address> ll = new LinkedList<>();
 		ll.add(address1);
 		ll.add(address2);
 		ll.add(address3);
 		e.setAddresses(ll);
-		session.persist(e);
+		// empList.addAll(ll);
+		Address address4 = new Address("NH01", "Manipur");
+		Address address5 = new Address("NH8", "Mumbai");
+		Address address6 = new Address("NH3", "Goa");
+		List<Address> ll2 = new LinkedList<>();
+		ll2.add(address4);
+		ll2.add(address5);
+		ll2.add(address6);
+		e2.setAddresses(ll2);
+		// empList.addAll()
+		Address address7 = new Address("NH1", "hydrabda");
+		Address address8 = new Address("NH33", "manali");
+		Address address9 = new Address("NH44", "Delhi");
+		List<Address> ll3 = new LinkedList<>();
+		ll3.add(address7);
+		ll3.add(address8);
+		ll3.add(address9);
+		e.setAddresses(ll3);
+
+		session.persist(empList);
 		// session.persist(ll);
 		transaction.commit();
 	}
